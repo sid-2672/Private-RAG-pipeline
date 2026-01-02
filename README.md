@@ -10,7 +10,7 @@
 
 **Private-RAG-pipeline** is an enterprise-grade retrieval-augmented generation system engineered for strict data sovereignty. It provides a secure, offline environment for ingesting, indexing, and querying sensitive documentation (Legal, Medical, Financial) without any external data exfiltration. By leveraging local inference engines and on-premise vector stores, it ensures that confidential information remains within the organization's secure perimeter at all times.
 
-## 2. Why This Matters?
+## 2. Why This Matters
 
 In an era of ubiquitous cloud-based AI services, the risk of unintentional data leakage is critical. Standard RAG implementations often rely on external APIs (e.g., OpenAI, Anthropic), necessitating the transmission of proprietary documents to third-party servers for embedding and generation.
 
@@ -23,22 +23,22 @@ The pipeline implements a unidirectional data flow designed for security and tra
 
 ```mermaid
 graph LR
-    subgraph Ingestion [Secure Ingestion Layer]
-        PDF[Sensitive PDF] --> OCR[Text Extraction]
-        OCR --> Chunk[Semantic Chunking]
+    subgraph Ingestion ["Secure Ingestion Layer"]
+        PDF["Sensitive PDF"] --> OCR["Text Extraction"]
+        OCR --> Chunk["Semantic Chunking"]
     end
 
-    subgraph Storage [Local Knowledge Base]
-        Chunk --> Embed[Local Embedding Model]
-        Embed --> Vector[Vector Store (ChromaDB)]
+    subgraph Storage ["Local Knowledge Base"]
+        Chunk --> Embed["Local Embedding Model"]
+        Embed --> Vector["Vector Store (ChromaDB)"]
     end
 
-    subgraph Inference [Air-Gapped Generation]
-        Query[User Query] --> Search[Semantic Retrieval]
+    subgraph Inference ["Air-Gapped Generation"]
+        Query["User Query"] --> Search["Semantic Retrieval"]
         Vector --> Search
-        Search --> Context[Prompt Construction]
-        Context --> LLM[Local LLM (Ollama)]
-        LLM --> Response[Secure Output]
+        Search --> Context["Prompt Construction"]
+        Context --> LLM["Local LLM (Ollama)"]
+        LLM --> Response["Secure Output"]
     end
 ```
 
